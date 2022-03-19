@@ -14,9 +14,8 @@
                         </div>
                     @endif
                     <div class="text-end">
-                      <button class="text-end btn btn-primary">追加</button>
+                      <button  onclick="location.href='{{ route('task.create') }}'" class="text-end btn btn-primary">追加</button>
                     </div>
-                    
                     <table class="table text-center">
                       <thead>
                         <tr>

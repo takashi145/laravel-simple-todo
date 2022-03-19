@@ -15,12 +15,19 @@ class TaskController extends Controller
 
     public function create()
     {
-        //
+        return view('task.create');
     }
 
     public function store(Request $request)
     {
-        //
+        Task::create([
+            'name' => $request->name,
+            'explanation' => $request->explanation,
+            'deadline' => $request->deadline,
+            'progress' => $request->progress,
+        ]);
+
+        return redirect()->route('task.index');
     }
 
     public function show($id)
