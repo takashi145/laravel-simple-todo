@@ -34,7 +34,7 @@
                         <tr class="">
                           <th scope="row">{{ $task->id }}</th>
                           <td>{{ $task->name }}</td>
-                          <td>{{ $task->deadline }}</td>
+                          <td>{{ $task->deadline ?? "---"}}</td>
                           <td>{{ $task->progress_name}}</td>
                           <td><a href="{{ route('task.show', ['task' => $task->id]) }}">詳細</a></td>
                           <td><button onclick="location.href='{{ route('task.edit', ['task' => $task->id ]) }}'" class="btn btn-primary">編集</button></td>

@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Auth::user()->tasks;
         return view('task.index', compact('tasks'));
     }
 
@@ -22,6 +28,7 @@ class TaskController extends Controller
     public function store(PostRequest $request)
     {
         Task::create([
+            'user_id' => Auth::id(),
             'name' => $request->name,
             'explanation' => $request->explanation,
             'deadline' => $request->deadline,

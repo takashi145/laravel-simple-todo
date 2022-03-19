@@ -10,11 +10,18 @@ class Task extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'explanation',
         'deadline',
         'progress',
     ];
+    
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
     public function getProgressNameAttribute()
     {
         $progress = [
