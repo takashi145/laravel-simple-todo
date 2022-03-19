@@ -39,16 +39,24 @@ class TaskController extends Controller
 
     public function edit($id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return view('task.edit', compact('task'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        $task->update([
+            'name' => $request->name,
+            'explanation' => $request->explanation,
+            'deadline' => $request->deadline,
+            'progress' => $request->progress,
+        ]);
+        return redirect()->route('task.index');
     }
 
     public function destroy($id)
     {
-        //
+        
     }
 }
