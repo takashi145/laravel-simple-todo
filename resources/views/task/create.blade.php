@@ -13,9 +13,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
+                    
                     <div class="text-start mb-4">
                       <button onclick="location.href='{{ route('task.index') }}'" class="text-end btn btn-primary">戻る</button>
                     </div>
+
+                    @if(!empty($errors))
+                    <ul class="text-danger">
+                      @foreach($errors->all() as $error)
+                        <li>Error: {{ $error }}</li>
+                      @endforeach
+                    </ul>
+                    @endif
                     <form action="{{ route('task.store') }}" method="post">
                       @csrf
                       <div class="mb-4">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Http\Requests\PostRequest;
 
 class TaskController extends Controller
 {
@@ -18,7 +19,7 @@ class TaskController extends Controller
         return view('task.create');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         Task::create([
             'name' => $request->name,
