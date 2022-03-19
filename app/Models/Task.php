@@ -15,4 +15,13 @@ class Task extends Model
         'deadline',
         'progress',
     ];
+    public function getProgressNameAttribute()
+    {
+        $progress = [
+            '1' => '未着手',
+            '2' => '着手中',
+            '3' => '完了',
+        ];
+        return $progress[$this->progress];
+    }
 }

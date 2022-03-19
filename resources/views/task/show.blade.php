@@ -43,7 +43,7 @@
                       <div class="mb-4">
                         <label class="form-label">進捗</label>
                         <div class="form-check">
-                          <div>{{ $task->progress }}</div>
+                          <div>{{ $task->progress_name }}</div>
                         </div>
                       </div>
                     </form>
