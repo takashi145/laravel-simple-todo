@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BelongController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamTaskController;
@@ -26,5 +27,11 @@ Auth::routes();
 Route::resource('task', TaskController::class);
 
 Route::resource('team', TeamController::class);
+
+Route::controller(BelongController::class)
+->prefix('belong')->name('belong.')->group(function() {
+    Route::post('/{team}/belong', 'belong')->name('belong');
+    Route::post('/{team}/unbelong', 'unbelong')->name('unbelong');
+});
 
 Route::resource('team_task', TeamTaskController::class);

@@ -32,7 +32,7 @@ class TeamController extends Controller
         $team = Team::create([
             'name' => $request->name,
         ]);
-        Auth::user()->teams->attach($team->id);
+        Auth::user()->teams()->attach($team->id);
         return redirect()->route('team.index');
     }
 

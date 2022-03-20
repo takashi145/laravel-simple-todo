@@ -32,7 +32,7 @@
                           <td>{{ $team->name }}</td>
                           <td><a href="{{ route('team.show', ['team' => $team->id]) }}">詳細</a></td>
                           <td>
-                            <form action="{{ route('belongs.unbelong', ['team' => $team->id]) }}" method="post" onsubmit="return deletion_confirmation()">
+                            <form action="{{ route('belong.unbelong', ['team' => $team->id]) }}" method="post" onsubmit="return deletion_confirmation()">
                               @csrf
                               <button type="submit" class="btn btn-danger">退会</button>
                             </form>
