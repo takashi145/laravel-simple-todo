@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="text-end">
-                      <button  onclick="location.href='{{ route('task.create') }}'" class="text-end btn btn-primary">チームを作成</button>
+                      <button  onclick="location.href='{{ route('team.create') }}'" class="text-end btn btn-primary">チームを作成</button>
                     </div>
                     <table class="table text-center">
                       <thead>
