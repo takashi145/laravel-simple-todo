@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use App\Models\Team;
+use App\Models\TeamTask;
+use Illuminate\Support\Facades\Auth;
 
 class TeamTaskController extends Controller
 {
@@ -11,16 +14,16 @@ class TeamTaskController extends Controller
     {
         $this->middleware('auth');
 
-        $this->middleware(function ($request, $next) {
-            $id = $request->route()->parameter('task');
-            if(!is_null($id)){
-                $userId = Task::findOrFail($id)->user_id;
-                if($userId !== Auth::id()){
-                    abort(404);
-                }
-            }
-            return $next($request);
-        });
+        // $this->middleware(function ($request, $next) {
+        //     $id = $request->route()->parameter('task');
+        //     if(!is_null($id)){
+        //         $userId = Task::findOrFail($id)->user_id;
+        //         if($userId !== Auth::id()){
+        //             abort(404);
+        //         }
+        //     }
+        //     return $next($request);
+        // });
     }
 
     public function index($id)
@@ -30,23 +33,24 @@ class TeamTaskController extends Controller
         return view('team.task.index', compact('team', 'tasks'));
     }
 
-    // public function create()
-    // {
-    //     return view('task.create');
-    // }
+    public function create($id)
+    {
+        $team = Team::findOrFail($id);
+        return view('team.task.create', compact('team'));
+    }
 
-    // public function store(PostRequest $request)
-    // {
-    //     Task::create([
-    //         'user_id' => Auth::id(),
-    //         'name' => $request->name,
-    //         'explanation' => $request->explanation,
-    //         'deadline' => $request->deadline,
-    //         'progress' => $request->progress,
-    //     ]);
-
-    //     return redirect()->route('task.index');
-    // }
+    public function store(PostRequest $request, $id)
+    {
+        TeamTask::create([
+            'team_id' => $id,
+            'user_id' => Auth::id(),
+            'name' => $request->name,
+            'explanation' => $request->explanation,
+            'deadline' => $request->deadline,
+            'progress' => $request->progress,
+        ]);
+        return redirect()->route('team_task.index', ['team' => $id]);
+    }
 
     // public function show($id)
     // {

@@ -35,6 +35,8 @@ Route::controller(BelongController::class)
 });
 
 Route::controller(TeamTaskController::class)
-->prefix('team_task')->name('team_task')->group(function() {
-    Route::get('/{team}', 'index')->name('');
+->prefix('team_task')->name('team_task.')->group(function() {
+    Route::get('/{team}', 'index')->name('index');
+    Route::get('/{team}/create', 'create')->name('create');
+    Route::post('/{team}/store', 'store')->name('store');
 });

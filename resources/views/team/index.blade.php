@@ -29,7 +29,7 @@
                         @foreach($teams as $team)
                         <tr class="">
                           <th scope="row">{{ $team->id }}</th>
-                          <td><a href="{{ route('team_task', ['team' => $team->id]) }}">{{ $team->name }}</a></td>
+                          <td><a href="{{ route('team_task.index', ['team' => $team->id]) }}">{{ $team->name }}</a></td>
                           <td><a href="{{ route('team.show', ['team' => $team->id]) }}">詳細</a></td>
                           <td>
                             <form action="{{ route('belong.unbelong', ['team' => $team->id]) }}" method="post" onsubmit="return deletion_confirmation()">

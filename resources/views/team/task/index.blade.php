@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Todoリスト チーム:{{ $team->name }}</div>
+                <div class="card-header">Todoリスト {{ $team->name }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="text-end">
-                      <button  onclick="location.href=''" class="text-end btn btn-primary">追加</button>
+                      <button onclick="location.href='{{ route('team_task.create', ['team' => $team->id]) }}'" class="text-end btn btn-primary">追加</button>
                     </div>
                     <table class="table text-center">
                       <thead>
@@ -32,7 +32,7 @@
                       <tbody>
                         @foreach($tasks as $task)
                         <tr class="">
-                          <th scope="row">{{ $task->id }}</th>
+                          <th scope="row"></th>
                           <td>{{ $task->name }}</td>
                           <td>{{ $task->deadline ?? "---"}}</td>
                           <td>{{ $task->progress_name}}</td>
