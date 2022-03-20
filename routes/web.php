@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TeamTaskController;
 use Illuminate\Support\Facades\Route;
 Use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +23,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('task', TaskController::class);
 
-ROute::resource('task', TaskController::class);
+Route::resource('team', TeamController::class);
+
+Route::resource('team_task', TeamTaskController::class);
