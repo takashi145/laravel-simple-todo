@@ -34,4 +34,7 @@ Route::controller(BelongController::class)
     Route::post('/{team}/unbelong', 'unbelong')->name('unbelong');
 });
 
-Route::resource('team_task', TeamTaskController::class);
+Route::controller(TeamTaskController::class)
+->prefix('team_task')->name('team_task')->group(function() {
+    Route::get('/{team}', 'index')->name('');
+});

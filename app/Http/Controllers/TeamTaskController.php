@@ -3,30 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Team;
 
 class TeamTaskController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
+    public function __construct()
+    {
+        $this->middleware('auth');
 
-    //     $this->middleware(function ($request, $next) {
-    //         $id = $request->route()->parameter('task');
-    //         if(!is_null($id)){
-    //             $userId = Task::findOrFail($id)->user_id;
-    //             if($userId !== Auth::id()){
-    //                 abort(404);
-    //             }
-    //         }
-    //         return $next($request);
-    //     });
-    // }
+        $this->middleware(function ($request, $next) {
+            $id = $request->route()->parameter('task');
+            if(!is_null($id)){
+                $userId = Task::findOrFail($id)->user_id;
+                if($userId !== Auth::id()){
+                    abort(404);
+                }
+            }
+            return $next($request);
+        });
+    }
 
-    // public function index()
-    // {
-    //     $tasks = Auth::user()->tasks;
-    //     return view('task.index', compact('tasks'));
-    // }
+    public function index($id)
+    {
+        $team = Team::findOrFail($id);
+        $tasks = $team->team_tasks;
+        return view('team.task.index', compact('team', 'tasks'));
+    }
 
     // public function create()
     // {

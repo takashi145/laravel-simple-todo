@@ -17,4 +17,9 @@ class Team extends Model
     {
         return $this->belongsToMany(User::class, 'belongs', 'team_id', 'user_id');
     }
+
+    public function team_tasks()
+    {
+        return $this->hasMany(TeamTask::class);
+    }
 }
