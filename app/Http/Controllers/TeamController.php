@@ -22,7 +22,9 @@ class TeamController extends Controller
 
     public function show($id)
     {
-
+        $team = Team::findOrFail($id);
+        $members = $team->users;
+        return view('team.show', compact('team','members'));
     }
 
     public function store(Request $request)
