@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BelongController;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TeamTaskController;
@@ -28,9 +29,16 @@ Route::resource('task', TaskController::class);
 
 Route::resource('team', TeamController::class);
 
+Route::controller(InvitationController::class)->prefix('invitation')->name('invitation.')->group(function(){
+    Route::get('/{team}/invitation', 'invitation')->name('invitation');
+    Route::post('/{team}/invitation', 'store')->name('store');
+    Route::post('/{team}/uninvitation', 'uninvitation')->name('uninvitation');
+});
+
 Route::controller(BelongController::class)
 ->prefix('belong')->name('belong.')->group(function() {
-    Route::post('/{team}/belong', 'belong')->name('belong');
+    Route::get('/{team}/belong', 'belong')->name('belong');
+    Route::post('/{team}/belong', 'store')->name('store');
     Route::post('/{team}/unbelong', 'unbelong')->name('unbelong');
 });
 

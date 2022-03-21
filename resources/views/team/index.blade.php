@@ -43,10 +43,59 @@
                     </table>
                 </div>
             </div>
+            <div class="card my-3">
+                <div class="card-header">招待されているチーム一覧</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <table class="table text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">チーム名</th>
+                          <th scope="col"></th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($invited_teams as $team)
+                        <tr class="">
+                          <th scope="row">{{ $team->id }}</th>
+                          <td>{{ $team->name }}</td>
+                          <td><a href="{{ route('team.show', ['team' => $team->id]) }}">詳細</a></td>
+                          <td>
+                            <form action="{{ route('belong.store', ['team' => $team->id]) }}" method="post" onsubmit="return participate_confirmation()">
+                              @csrf
+                              <button type="submit" class="btn btn-primary">参加</button>
+                            </form>
+                          </td>
+                          <td>
+                            <form action="{{ route('invitation.uninvitation', ['team' => $team->id]) }}" method="post" onsubmit="return deletion_confirmation()">
+                              @csrf
+                              <button type="submit" class="btn btn-danger">削除</button>
+                            </form>
+                          </td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <script>
+  function participate_confirmation() {
+    if(confirm('本当に参加してもよろしいですか。')){
+      return true;
+    }
+    return false;
+  }
+
   function deletion_confirmation() {
     if(confirm('本当に退会してもよろしいですか。')){
       return true;

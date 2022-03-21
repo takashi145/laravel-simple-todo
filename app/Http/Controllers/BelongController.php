@@ -7,10 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class BelongController extends Controller
 {
+    public function belong($id){}
+
     // チーム所属
-    public function belong($id)
+    public function store($id)
     {
         Auth::user()->teams()->attach($id);
+        Auth::user()->invitation_teams()->detach($id);
         return redirect()->route('team.index');
     }
 

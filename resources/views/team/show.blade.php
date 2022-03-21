@@ -31,6 +31,9 @@
                         @endforeach  
                         </ul>
                       </div>
+                      <div class="text-end">
+                        <button onclick="location.href='{{ route('invitation.invitation', ['team' => $team->id]) }}'" class="btn btn-primary">ユーザーを招待</button>
+                      </div>
                     </div>
                 </div>
             </div>

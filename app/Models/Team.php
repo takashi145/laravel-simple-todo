@@ -11,7 +11,6 @@ class Team extends Model
 
     protected $fillable = [
         'name',
-        'leader_id',
     ];
 
     public function users()
@@ -22,5 +21,10 @@ class Team extends Model
     public function team_tasks()
     {
         return $this->hasMany(TeamTask::class);
+    }
+
+    public function invitation_users()
+    {
+        return $this->belongsToMany(User::class, 'invitations', 'team_id', 'user_id');
     }
 }
