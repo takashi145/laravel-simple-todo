@@ -58,23 +58,24 @@ class TeamTaskController extends Controller
         return view('team.task.show', compact('task'));
     }
 
-    // public function edit($id)
-    // {
-    //     $task = Task::findOrFail($id);
-    //     return view('task.edit', compact('task'));
-    // }
+    public function edit($id)
+    {
+        $task = TeamTask::findOrFail($id);
+        return view('team.task.edit', compact('task'));
+    }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $task = Task::findOrFail($id);
-    //     $task->update([
-    //         'name' => $request->name,
-    //         'explanation' => $request->explanation,
-    //         'deadline' => $request->deadline,
-    //         'progress' => $request->progress,
-    //     ]);
-    //     return redirect()->route('task.index');
-    // }
+    public function update(Request $request, $id)
+    {
+        $task = TeamTask::findOrFail($id);
+        $task->update([
+            'name' => $request->name,
+            'user_id' => Auth::id(),
+            'explanation' => $request->explanation,
+            'deadline' => $request->deadline,
+            'progress' => $request->progress,
+        ]);
+        return redirect()->route('team_task.index', ['team' => $task->team->id]);
+    }
 
     // public function destroy($id)
     // {

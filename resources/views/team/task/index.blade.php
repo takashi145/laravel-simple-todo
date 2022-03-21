@@ -37,7 +37,7 @@
                           <td>{{ $task->deadline ?? "---"}}</td>
                           <td>{{ $task->progress_name}}</td>
                           <td><a href="{{ route('team_task.show', ['task' => $task->id]) }}">詳細</a></td>
-                          <td><button onclick="location.href=''" class="btn btn-primary">編集</button></td>
+                          <td><button onclick="location.href='{{ route('team_task.edit', ['task' => $task->id]) }}'" class="btn btn-primary">編集</button></td>
                           <td>
                             <form action="" method="post" onsubmit="return deletion_confirmation()">
                               @csrf

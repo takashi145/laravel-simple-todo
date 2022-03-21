@@ -40,4 +40,6 @@ Route::controller(TeamTaskController::class)
     Route::get('/{team}/create', 'create')->name('create');
     Route::get('/{task}/show', 'show')->name('show');
     Route::post('/{team}/store', 'store')->name('store');
+    Route::get('/{task}/edit', 'edit')->name('edit');
+    Route::put('/{task}/edit', 'update')->name('update');
 });
