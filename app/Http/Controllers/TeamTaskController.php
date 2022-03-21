@@ -52,11 +52,11 @@ class TeamTaskController extends Controller
         return redirect()->route('team_task.index', ['team' => $id]);
     }
 
-    // public function show($id)
-    // {
-    //     $task = Task::findOrFail($id);
-    //     return view('task.show', compact('task'));
-    // }
+    public function show($id)
+    {
+        $task = TeamTask::findOrFail($id);
+        return view('team.task.show', compact('task'));
+    }
 
     // public function edit($id)
     // {

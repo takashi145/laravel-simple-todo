@@ -32,11 +32,11 @@
                       <tbody>
                         @foreach($tasks as $task)
                         <tr class="">
-                          <th scope="row"></th>
+                          <th scope="row">{{ $task->user->name }}</th>
                           <td>{{ $task->name }}</td>
                           <td>{{ $task->deadline ?? "---"}}</td>
                           <td>{{ $task->progress_name}}</td>
-                          <td><a href="">詳細</a></td>
+                          <td><a href="{{ route('team_task.show', ['task' => $task->id]) }}">詳細</a></td>
                           <td><button onclick="location.href=''" class="btn btn-primary">編集</button></td>
                           <td>
                             <form action="" method="post" onsubmit="return deletion_confirmation()">

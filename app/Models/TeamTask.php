@@ -20,7 +20,12 @@ class TeamTask extends Model
 
     public function team()
     {
-        return $this->hasOne(Team::class);
+        return $this->belongsTo(Team::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function getProgressNameAttribute()

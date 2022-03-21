@@ -31,6 +31,7 @@ class TeamController extends Controller
     {
         $team = Team::create([
             'name' => $request->name,
+            'leader_id' => Auth::id(),
         ]);
         Auth::user()->teams()->attach($team->id);
         return redirect()->route('team.index');
@@ -38,7 +39,7 @@ class TeamController extends Controller
 
     public function edit($id)
     {
-
+        
     }
 
     public function update(Request $request, $id)

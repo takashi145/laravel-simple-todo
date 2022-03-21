@@ -11,6 +11,7 @@ class Team extends Model
 
     protected $fillable = [
         'name',
+        'leader_id',
     ];
 
     public function users()

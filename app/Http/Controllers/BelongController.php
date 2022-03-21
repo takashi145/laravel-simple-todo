@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Auth;
 class BelongController extends Controller
 {
     // チーム所属
-    public function belong()
+    public function belong($id)
     {
-        
+        Auth::user()->teams()->attach($id);
+        return redirect()->route('team.index');
     }
 
     // チーム退会
