@@ -77,10 +77,10 @@ class TeamTaskController extends Controller
         return redirect()->route('team_task.index', ['team' => $task->team->id]);
     }
 
-    // public function destroy($id)
-    // {
-    //     $task = Task::findOrFail($id);
-    //     $task->delete();
-    //     return redirect()->route('task.index');
-    // }
+    public function destroy($id)
+    {
+        $task = TeamTask::findOrFail($id);
+        $task->delete();
+        return redirect()->back();
+    }
 }

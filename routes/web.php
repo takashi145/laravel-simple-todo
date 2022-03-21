@@ -42,4 +42,5 @@ Route::controller(TeamTaskController::class)
     Route::post('/{team}/store', 'store')->name('store');
     Route::get('/{task}/edit', 'edit')->name('edit');
     Route::put('/{task}/edit', 'update')->name('update');
+    Route::delete('/{task}/destroy', 'destroy')->name('destroy');
 });
