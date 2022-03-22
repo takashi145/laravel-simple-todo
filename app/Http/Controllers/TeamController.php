@@ -41,12 +41,21 @@ class TeamController extends Controller
 
     public function edit($id)
     {
-        
+        $team = Team::findOrFail($id);
+        $members = $team->users;
+        $manager = $team->user;
+        return view('team.edit', compact('team', 'members', 'manager'));
     }
 
     public function update(Request $request, $id)
     {
-
+        $team = Team::findOrFail($id);
+        $team->update([
+            'name' => $request->name,
+            'user_id' => $request->manager
+        ]);
+        session()->flash('message', '更新しました。');
+        return redirect()->route('team.index', ['team' => $id]);
     }
 
     public function destroy($id)

@@ -15,7 +15,7 @@
                     @endif
 
                     <div class="text-start mb-4">
-                      <button onclick="location.href='{{ route('team.index') }}'" class="text-end btn btn-primary">戻る</button>
+                      <a href="{{ route('team.index') }}" class="text-end">戻る</a>
                     </div>
 
                     <div>
@@ -37,6 +37,7 @@
                       </div>
                       @if($manager->id === Auth::id())
                       <div class="text-end">
+                        <button onclick="location.href='{{ route('team.edit', ['team' => $team->id]) }}'" class="btn btn-primary mx-3">編集</button>
                         <button onclick="location.href='{{ route('invitation.invitation', ['team' => $team->id]) }}'" class="btn btn-primary">ユーザーを招待</button>
                       </div>
                       @endif

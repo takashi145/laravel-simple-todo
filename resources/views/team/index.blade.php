@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        @if (session('message'))
+            <div class="alert alert-success" role="alert">
+                {{ session('message') }}
+            </div>
+        @endif
             <div class="card">
                 <div class="card-header">所属チーム一覧</div>
 
@@ -63,7 +69,7 @@
                       </thead>
                       <tbody>
                         @foreach($invited_teams as $team)
-                        <tr class="">
+                        <tr>
                           <th scope="row">{{ $team->id }}</th>
                           <td>{{ $team->name }}</td>
                           <td><a href="{{ route('team.show', ['team' => $team->id]) }}">詳細</a></td>
