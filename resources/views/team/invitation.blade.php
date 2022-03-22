@@ -16,6 +16,11 @@
                       <div class="text-start mb-4">
                         <a href="{{ route('team.index') }}" class="text-end">戻る</a>
                       </div>
+                      @if(session('error'))
+                          <div class="alert alert-danger" role="alert">
+                              {{ session('error') }}
+                          </div>
+                      @endif
                       <form action="{{ route('invitation.store', ['team' => $team->id ])}}" method="post">
                         @csrf
                         <div class="mb-4">

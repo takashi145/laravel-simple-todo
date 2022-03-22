@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 
 class BelongController extends Controller
 {
-    public function belong($id){}
+    public function belong($id){
+        abort('404');
+    }
 
     // チーム所属
     public function store($id)
