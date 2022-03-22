@@ -45,7 +45,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'progress' => $request->progress,
         ]);
-
+        session()->flash('message', 'タスクを作成されました。');
         return redirect()->route('task.index');
     }
 
@@ -70,6 +70,7 @@ class TaskController extends Controller
             'deadline' => $request->deadline,
             'progress' => $request->progress,
         ]);
+        session()->flash('message', '更新されました。');
         return redirect()->route('task.index');
     }
 
@@ -77,6 +78,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
+        session()->flash('message', 'タスクが削除されました。');
         return redirect()->route('task.index');
     }
 }

@@ -8,15 +8,8 @@
                 <div class="card-header">Todoリスト</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    
                     <div class="text-start mb-4">
-                      <button onclick="location.href='{{ route('task.index') }}'" class="text-end btn btn-primary">戻る</button>
+                      <a href="{{ route('task.index') }}" class="text-end">戻る</a>
                     </div>
 
                     @if(!empty($errors))
@@ -26,7 +19,7 @@
                       @endforeach
                     </ul>
                     @endif
-                    <form action="{{ route('task.store') }}" method="post">
+                    <div>
                       @csrf
                       <div class="mb-4">
                         <label for="name" class="form-label">タスク</label>
@@ -46,7 +39,15 @@
                           <div>{{ $task->progress_name }}</div>
                         </div>
                       </div>
-                    </form>
+                      <div class="d-flex justify-content-around">
+                        <button onclick="location.href='{{ route('task.edit', ['task' => $task->id]) }}'" class="btn btn-primary">編集</button>
+                        <form action="{{ route('task.destroy', ['task' => $task->id]) }}" method="post" onsubmit="return deletion_confirmation()">
+                          @csrf
+                          @method('delete')
+                          <button type="submit" class="btn btn-danger">削除</button>
+                        </form>
+                      </div>
+                    </div>
                 </div>
             </div>
         </div>

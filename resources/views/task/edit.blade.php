@@ -8,15 +8,8 @@
                 <div class="card-header">Todoリスト</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    
                     <div class="text-start mb-4">
-                      <button onclick="location.href='{{ route('task.index') }}'" class="text-end btn btn-primary">戻る</button>
+                      <a href="{{ route('task.index') }}" class="text-end">戻る</a>
                     </div>
 
                     @if(!empty($errors))

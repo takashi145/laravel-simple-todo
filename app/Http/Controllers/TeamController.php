@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Team;
-use App\Models\Belong;
 
 class TeamController extends Controller
 {
@@ -36,6 +35,7 @@ class TeamController extends Controller
             'user_id' => Auth::id(),
         ]);
         Auth::user()->teams()->attach($team->id);
+        session()->flash('message', 'チームが作成されました。');
         return redirect()->route('team.index');
     }
 
@@ -55,12 +55,15 @@ class TeamController extends Controller
             'user_id' => $request->manager
         ]);
         session()->flash('message', '更新しました。');
-        return redirect()->route('team.index', ['team' => $id]);
+        return redirect()->route('team.index');
     }
 
     public function destroy($id)
     {
-
+        $team = Team::findOrFail($id);
+        $team->delete();
+        session()->flash('message', 'チームを削除しました。');
+        return redirect()->route('team.index');
     }
 
 }

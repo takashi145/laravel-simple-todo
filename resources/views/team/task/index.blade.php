@@ -8,11 +8,7 @@
                 <div class="card-header">Todoリスト {{ $team->name }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <a href="{{ route('team.index') }}">チーム一覧に戻る</a>
                     <div class="text-end">
                       <button onclick="location.href='{{ route('team_task.create', ['team' => $team->id]) }}'" class="text-end btn btn-primary">追加</button>
                     </div>
@@ -37,16 +33,6 @@
                           <td>{{ $task->deadline ?? "---"}}</td>
                           <td>{{ $task->progress_name}}</td>
                           <td><a href="{{ route('team_task.show', ['task' => $task->id]) }}">詳細</a></td>
-                          @if($task->user->name === Auth::user()->name)
-                          <td><button onclick="location.href='{{ route('team_task.edit', ['task' => $task->id]) }}'" class="btn btn-primary">編集</button></td>
-                          <td>
-                            <form action="{{ route('team_task.destroy', ['task' => $task->id]) }}" method="post" onsubmit="return deletion_confirmation()">
-                              @csrf
-                              @method('delete')
-                              <button type="submit" class="btn btn-danger">削除</button>
-                            </form>
-                          </td>
-                          @endif
                         </tr>
                         @endforeach
                       </tbody>
@@ -56,12 +42,4 @@
         </div>
     </div>
 </div>
-<script>
-  function deletion_confirmation() {
-    if(confirm('本当に削除してもよろしいですか。')){
-      return true;
-    }
-    return false;
-  }
-</script>
 @endsection

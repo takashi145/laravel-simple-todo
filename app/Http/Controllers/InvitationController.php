@@ -24,13 +24,13 @@ class InvitationController extends Controller
             session()->flash('error', 'ユーザーが存在しません。');
             return redirect()->back();
         }
-        $belong_check = $team->users()->where('user_id', $user->id)->exists();  //すでに所属済みか判定
+        $belong_check = $team->users()->where('user_id', $user->id)->exists();  //すでにチームに所属済みか判定
         if($belong_check){
             session()->flash('error', 'すでに所属しているユーザーです。');
             return redirect()->back();
         }
         $team->invitation_users()->syncWithoutDetaching($user->id);
-        session()->flash('message', 'ユーザーを招待しました。');
+        session()->flash('message', 'ユーザーを招待を送りました。');
         return redirect()->route('team.index');
     }
 

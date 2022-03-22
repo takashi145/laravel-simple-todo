@@ -13,11 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
                     <div class="text-start mb-4">
-                      <button onclick="location.href='{{ route('team.index') }}'" class="text-end btn btn-primary">戻る</button>
+                      <a href="{{ route('team.index') }}" class="text-end">戻る</a>
                     </div>
-
                     @if(!empty($errors))
                     <ul class="text-danger">
                       @foreach($errors->all() as $error)

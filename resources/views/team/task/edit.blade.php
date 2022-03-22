@@ -8,15 +8,8 @@
                 <div class="card-header">Todoリスト チーム:{{ $task->team->name }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    
                     <div class="text-start mb-4">
-                      <button onclick="location.href='{{ route('team_task.index', ['team' => $task->team->id]) }}'" class="text-end btn btn-primary">戻る</button>
+                      <a href="{{ route('team_task.index', ['team' => $task->team->id]) }}" class="text-end">戻る</button>
                     </div>
 
                     @if(!empty($errors))

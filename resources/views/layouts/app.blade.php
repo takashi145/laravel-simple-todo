@@ -33,12 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if(Auth::check())
                         <li class="nav-item mx-3">
                             <a class="nav-link" href="{{ route('task.index') }}">個人</a>
                         </li>
                         <li class="nav-item mx-3">
                             <a class="nav-link" href="{{ route('team.index') }}">チーム</a>
                         </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -83,6 +85,29 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <script>
+            function participate_confirmation() {
+                if(confirm('本当に参加してもよろしいですか。')){
+                return true;
+                }
+                return false;
+            }
+
+            function withdrawal_confirmation() {
+                if(confirm('本当に退会してもよろしいですか。')){
+                return true;
+                }
+                return false;
+            }
+
+            function deletion_confirmation() {
+                if(confirm('本当に削除してもよろしいですか。')){
+                return true;
+                }
+                return false;
+            }
+        </script>
     </div>
 </body>
 </html>

@@ -49,6 +49,7 @@ class TeamTaskController extends Controller
             'deadline' => $request->deadline,
             'progress' => $request->progress,
         ]);
+        session()->flash('message', 'タスクが作成されました。');
         return redirect()->route('team_task.index', ['team' => $id]);
     }
 
@@ -74,6 +75,7 @@ class TeamTaskController extends Controller
             'deadline' => $request->deadline,
             'progress' => $request->progress,
         ]);
+        session()->flash('messge', '更新しました。');
         return redirect()->route('team_task.index', ['team' => $task->team->id]);
     }
 
@@ -81,6 +83,7 @@ class TeamTaskController extends Controller
     {
         $task = TeamTask::findOrFail($id);
         $task->delete();
+        session()->flash('message', 'タスクを削除しました。');
         return redirect()->back();
     }
 }

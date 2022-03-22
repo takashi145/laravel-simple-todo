@@ -16,7 +16,7 @@
 
                     
                     <div class="text-start mb-4">
-                      <button onclick="location.href='{{ route('team_task.index', ['team' => $task->team->id]) }}'" class="text-end btn btn-primary">戻る</button>
+                      <a href="{{ route('team_task.index', ['team' => $task->team->id]) }}" class="text-end">戻る</a>
                     </div>
 
                     @if(!empty($errors))
@@ -49,7 +49,18 @@
                           <div>{{ $task->progress_name }}</div>
                         </div>
                       </div>
-                    </d>
+                      @if($task->user->name === Auth::user()->name)
+                      <div class="d-flex justify-content-around">
+                        <button onclick="location.href='{{ route('team_task.edit', ['task' => $task->id]) }}'" class="btn btn-primary">編集</button>
+                        <form action="{{ route('team_task.destroy', ['task' => $task->id]) }}" method="post" onsubmit="return deletion_confirmation()">
+                          @csrf
+                          @method('delete')
+                          <button type="submit" class="btn btn-danger">削除</button>
+                        </form>
+                      </div>
+                        
+                      @endif
+                    </div>
                 </div>
             </div>
         </div>
