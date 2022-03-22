@@ -10,12 +10,18 @@ class Team extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'user_id'
     ];
 
     public function users()
     {
         return $this->belongsToMany(User::class, 'belongs', 'team_id', 'user_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function team_tasks()

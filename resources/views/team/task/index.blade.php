@@ -37,6 +37,7 @@
                           <td>{{ $task->deadline ?? "---"}}</td>
                           <td>{{ $task->progress_name}}</td>
                           <td><a href="{{ route('team_task.show', ['task' => $task->id]) }}">詳細</a></td>
+                          @if($task->user->name === Auth::user()->name)
                           <td><button onclick="location.href='{{ route('team_task.edit', ['task' => $task->id]) }}'" class="btn btn-primary">編集</button></td>
                           <td>
                             <form action="{{ route('team_task.destroy', ['task' => $task->id]) }}" method="post" onsubmit="return deletion_confirmation()">
@@ -45,6 +46,7 @@
                               <button type="submit" class="btn btn-danger">削除</button>
                             </form>
                           </td>
+                          @endif
                         </tr>
                         @endforeach
                       </tbody>

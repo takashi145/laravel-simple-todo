@@ -25,14 +25,15 @@ class TeamController extends Controller
     {
         $team = Team::findOrFail($id);
         $members = $team->users;
-        return view('team.show', compact('team','members'));
+        $manager = $team->user;
+        return view('team.show', compact('team','members', 'manager'));
     }
 
     public function store(Request $request)
     {
         $team = Team::create([
             'name' => $request->name,
-            'leader_id' => Auth::id(),
+            'user_id' => Auth::id(),
         ]);
         Auth::user()->teams()->attach($team->id);
         return redirect()->route('team.index');

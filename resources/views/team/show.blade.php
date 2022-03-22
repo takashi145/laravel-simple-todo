@@ -20,6 +20,10 @@
 
                     <div>
                       <div class="mb-4">
+                        <label for="manager" class="form-label">管理者</label>
+                        <input type="text" class="form-control" name="name" id="name" value="{{ $manager->name }}" readonly>
+                      </div>
+                      <div class="mb-4">
                         <label for="name" class="form-label">チーム名</label>
                         <input type="text" class="form-control" name="name" id="name" value="{{ $team->name }}" readonly>
                       </div>
@@ -31,9 +35,11 @@
                         @endforeach  
                         </ul>
                       </div>
+                      @if($manager->id === Auth::id())
                       <div class="text-end">
                         <button onclick="location.href='{{ route('invitation.invitation', ['team' => $team->id]) }}'" class="btn btn-primary">ユーザーを招待</button>
                       </div>
+                      @endif
                     </div>
                 </div>
             </div>
